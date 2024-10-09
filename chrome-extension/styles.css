@@ -1,0 +1,203 @@
+#chat-container {
+    width: 500px;
+    padding: 10px;
+    margin: 0px 0px 0px 0px;
+    text-align: center;
+
+  }
+  
+  #chat-log {
+    height: 200px;
+    overflow-y: scroll;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    min-height: 250px;
+    overflow: auto;
+  }
+
+  #instructions-text {
+    font-size: 16px;
+  }
+
+  #top-buttons {
+    float:right;
+    display: flex;
+    flex-direction: row;
+  }
+
+  #actions-bar {
+    margin: 5px 10px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .bot {
+    /* color: #c4eaec; */
+    font-family: "Noto Sans", sans-serif;
+  }
+
+  .buttons {
+    color: darkslategray;
+    background-color: #e2f4f5; /* Green background */
+    padding: 8px 16px; /* Some padding */
+    text-align: center; /* Center the text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Get the element to align properly */
+    font-size: 16px; /* Increase font size */
+    margin: 4px 2px; /* Add some margin */
+    cursor: pointer; /* Add a pointer on hover */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
+  }
+
+  .custom-link {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    text-align: center;
+    display: block;
+  }
+
+  .instr {
+    color: #15595B;
+    font-size: 18px;
+    margin-bottom: 0px;
+    text-align: center;
+    width: auto;
+  }
+
+  .title {
+    color: #15595B;
+    font-size: 22px;
+    margin-bottom: 0px;
+    text-align: center;
+    width: auto;
+  }
+  
+  .message {
+    padding: 5px;
+    margin: 5px 0;
+  }
+
+  img {
+    width: 40%;
+    height: 40%;
+  }
+  
+  .message.user {
+    background-color: #e2f4f5;
+    text-align: right;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px 10px 10px 10px;
+  }
+  
+  .message.bot {
+    background-color: #FFF2DE;
+    border-radius: 10px 10px 10px 10px;
+    text-align: left;
+    color: #6E4911;
+    padding: 10px;
+    margin: 10px;
+  }
+
+  .message.bot div {
+    background-color: #FFF2DE;
+    border-radius: 10px 10px 10px 10px;
+    text-align: left;
+    color: #6E4911;
+    padding: 10px;
+    margin: 10px;
+  }
+  
+  .user {
+    color: #15595B;
+    font-family: "Noto Sans", sans-serif;
+  }
+
+  .title {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 20px;
+  }
+
+  .link-button {
+    background-color: darkslategray;
+    color: #e2f4f5;
+    border: 1 solid #e2f4f5;
+    padding: 16px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.link-button:hover{
+  border-color: #dadce0;
+  box-shadow: rgba(0, 0, 0, .1) 0 1px 1px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 10px 0;
+}
+
+#actions-bar {
+  margin: 5px 10px;
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#chat-log {
+  background-color: #f9f9f9;
+  min-height: 250px;
+  overflow: auto;
+}
+
+#send-bar {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#user-input {
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 1 solid #175e61;
+  font-size: 14px;
+}
+
+#top-instr {
+  margin-bottom: 10px;
+}
+
+#help-modal {
+  padding: 20px;
+  width: 90%;
+  border-radius: 5px;
+  border: 1px rgba(0, 0, 0, 0.16);
+  box-sizing: border-box;
+}
+
+#close-modal {
+  right: 5%;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border: none;
+  display:flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  box-sizing: border-box;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+}

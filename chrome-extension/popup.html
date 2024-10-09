@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="styles.css" />
+<html>
+  <head>
+    <title>Shopbot</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        width: 80%;
+      }
+      #chat-container {
+        display: flex;
+        align-items: "center";
+        flex-direction: column;
+      }
+      #user-input {
+        width: calc(100% - 22px);
+        padding: 10px;
+      }
+      .message {
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
+      #pill {
+        width: 99%;
+        min-height: 30%;
+        padding: 10px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        border-radius: 5px;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.07);
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #pill-container {
+        width: 100%;
+        height: 200px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+        margin-bottom: 300px;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      #send-bar {
+        display: flex;
+        flex-direction: row;
+      }
+      #close-popup {
+        width: 20px;
+        height: 20px;
+        background-color: transparent;
+        border: none;
+        display:flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+        box-sizing: border-box;
+        font-size: 18px;
+        font-weight: bold;
+        color: #000;
+      }
+      #close-popup::before {
+        content: "x"; /* Unicode character for "X" */
+      }
+      button {
+        color: #175e61;
+        background-color: #e2f4f5; /* Green background */
+        border: none;
+        padding: 8px 16px; /* Some padding */
+        text-align: center; /* Center the text */
+        text-decoration: none; /* Remove underline */
+        display: inline-block; /* Get the element to align properly */
+        font-size: 16px; /* Increase font size */
+        margin: 4px 2px; /* Add some margin */
+        cursor: pointer; /* Add a pointer on hover */
+        border-radius: 10px; /* Rounded corners */
+        transition-duration: 0.4s;
+        box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
+      }
+      button:hover {
+        background-color: #b1ebf8; /* Darker Green background */
+        border-color: #dadce0;
+        box-shadow: rgba(0, 0, 0, .1) 0 1px 1px;
+      }
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      #listening-indicator {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        font-size: 3em;
+        text-align: center;
+        line-height: 100vh;
+        z-index: 9999;
+      }
+      #filter-side {
+        height: fit-content;
+        width: fit-content;
+        box-shadow: 0px 0px 5px 3px rgba(52,194,199,1);
+        box-sizing: border-box;
+        padding: 10px;
+        margin-top: 60px;
+      }
+      #navigate-button {
+        padding: 20px 50px;
+      }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+  <body>
+    <div id="top-buttons">
+        <button id="help-button">Help</button>
+        <button id="close-popup"></button>
+    </div>
+    <div id="chat-container">
+      <p class="instr title"> <b>Shopbot on Amazon!</b></p>
+      <p class="instr" id="top-instr">Ask the chatbot <b>what item you want to purchase</b> and <b>narrow your
+          search</b> by telling your bot more details.
+      </p>
+        
+      <div id="chat-box">
+        <div id="chat-log"></div>
+        <div id="send-bar">
+          <textarea wrap="soft" id="user-input" rows="2" cols="50" placeholder="Type a message..."></textarea>
+          <button id="send-btn" class="buttons"><i class="material-icons">send</i>Send</button>
+          <button id="voice-btn" class="buttons">
+            <i class="material-icons">mic</i>
+            <br>Voice Input
+          </button>
+          <button id="clear-btn" class="buttons">
+            <i class="material-icons">clear_all</i>
+            <br>Clear Chat
+          </button>
+        </div>
+        <div id="actions-bar">
+          
+        </div>
+        <div id="message"></div>
+      </div>
+      <dialog id="help-modal">
+        <button id="close-modal" class="close">x</button>
+        <div class="title"><br /><p><b>Questions</b></p></div>
+        <hr />
+        <div class="instr">
+          <p><b>Why is my "Voice Input" not working?</b></p>
+          <p>Try clicking this button</p>
+          <button id="open-welcome" class="buttons">
+            Grant Speech Permissions
+          </button>
+        </div>
+        <br />
+        <hr />
+        <div>
+          <div class="instr">
+            <p><b>What do I ask the bot for?</b></p>
+            <p>Here are examples:</p>
+          </div>
+          <div id="pill-container">
+            <div id="pill" class="instr">
+              "I want headphones that are noise cancelling"
+            </div>
+            <div id="pill" class="instr">"I want blue headphones"</div>
+            <div id="pill" class="instr">
+              "I want headphones that can be delivered tomorrow"
+            </div>
+            <div id="pill" class="instr">"I want headphones under $20"</div>
+            <div id="pill" class="instr">
+              "I want headphones that are only 5 stars"
+            </div>
+            <div id="pill" class="instr">
+              "I want headphones that do Prime delivery"
+            </div>
+          </div>
+      </div>
+      <hr />
+      <br />
+      <div class="instr">
+        <p><b>How can I open the bot without clicking?</b></p>
+        <p>Try out this keyboard shortcut.</p>
+        <img src="ctrl-b.png" alt="Shortcut displaying keyboard keys command and b" />
+        <br /><br />
+        <i>Remember 'B' for Bot!</i>
+      </div>
+      <hr />
+      <br />
+      <div class="instr">
+        <p><b>What is ShopBot?</b></p>
+        <p>ShopBot was made for those who have difficulty searching for items on Amazon's site. The buttons to filter search results
+          and add to cart, for example, are too small to click. We provide an easier way to shop. You can ask our shopping bot anything
+          about the products you are searching for!
+        </p>
+      </div>
+     </dialog>
+      <p class="instr" > Hard to open the bot? Press these two keys together: <br /><br />
+        <img src="ctrl-b.png" alt="Shortcut displaying keyboard keys command and b" />
+        <br /><br />
+        <i>Remember 'B' for Bot!</i>
+      </p>
+    </div>
+
+    <div id="listening-indicator">Listening for...</div>
+    <script src="popup.js"></script>
+  </body>
+</html>
