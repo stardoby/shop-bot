@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": `Enter API KEY here`,
+                        //"Authorization": `Enter API KEY here`,
                     },
                     body: JSON.stringify({
                         model: "gpt-4o",
