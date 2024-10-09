@@ -10,7 +10,7 @@ app.post('/chat', async (req, res) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer sk-proj-jpXBQaHemVKLxypx1WQGT3BlbkFJDrLI6jFQk2xnaHmF1OOy`
+            'Authorization': `Enter API KEY here`
         },
         body: JSON.stringify({
             prompt: req.body.message,
